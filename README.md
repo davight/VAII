@@ -63,7 +63,8 @@ Pokiaľ sa tak rozhodne bude môcť nastaviť toto plátno ako verejné. Teda ho
 2. Registrácia / prihlásenie: možnosť sa prihlásiť alebo registrovať 
 3. Moje reporty: zoznam reportov s možnosťou ich nejak spravovať
 4. Editor reportu: plátno s panelom nástrojov kde si uživateľ bude upravovať svoj vizual reportu
-6. Administrácia: správa používateľov a moderovanie verejných reportov 
+6. Administrácia: správa používateľov a moderovanie verejných reportov
+7. Kiosk: live zobrazenie reportu
 
 ## Rozdelenie funkcionality
 
