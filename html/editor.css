@@ -163,14 +163,6 @@ button.btn {
     cursor: pointer;
 }
 
-.btn-primary {
-    background: var(--accent);
-}
-
-.btn-primary:hover {
-    background: #e8ae40;
-}
-
 @media (min-width: 1000px) {
     .editor {
         grid-template-columns: auto 1fr 280px;
