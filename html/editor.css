@@ -1,0 +1,182 @@
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--card);
+    border: var(--thickness) solid var(--border);
+}
+
+.editor {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.toolbar, .properties {
+    background: var(--bar);
+    border: var(--thickness) solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.75rem;
+}
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    border-width: var(--thickness);
+}
+
+.tool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0;
+    font: inherit;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.tool-icon {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    background: var(--card);
+    border: var(--thickness) solid var(--border);
+    border-radius: var(--radius);
+}
+
+.tool.active .tool-icon {
+    background: var(--accent);
+}
+
+.canvas-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+}
+
+.canvas {
+    width: 100%;
+    max-width: 640px;
+    aspect-ratio: 16 / 9;
+    display: grid;
+    place-items: center;
+    font-weight: 600;
+    border: 2px dashed var(--border);
+    border-radius: 4px;
+}
+
+.canvas-size {
+    margin: 0.5rem 0 0;
+    font-size: 0.7rem;
+}
+
+fieldset {
+    min-width: 0;
+    margin: 0 0 1.25rem;
+    padding: 0;
+    border: 0;
+}
+
+legend {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.75rem;
+    padding: 0 0 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-bottom: var(--thickness) solid var(--border);
+}
+
+.field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.field {
+    min-width: 0;
+    margin-bottom: 0.75rem;
+}
+
+.field-grid .field {
+    margin-bottom: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+input, select {
+    width: 100%;
+    min-width: 0;
+    padding: 0.5rem;
+    font: inherit;
+    font-size: 0.8rem;
+    color: inherit;
+    background: var(--card);
+    border: var(--thickness) solid var(--border);
+    border-radius: var(--radius);
+}
+
+input[type="color"] {
+    height: 38px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.options {
+    margin-bottom: 0;
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+button.btn {
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: inherit;
+    cursor: pointer;
+}
+
+@media (min-width: 1000px) {
+    .editor {
+        grid-template-columns: auto 1fr 280px;
+        gap: 1.5rem;
+        align-items: start;
+    }
+
+    .toolbar {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 1rem;
+    }
+
+    .canvas-area {
+        padding-top: 1.5rem;
+    }
+}
