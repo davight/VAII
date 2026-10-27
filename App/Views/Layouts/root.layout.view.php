@@ -7,6 +7,8 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= App\Configuration::APP_NAME ?></title>
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="<?= $link->asset('favicons/apple-touch-icon.png') ?>">
@@ -14,45 +16,57 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<?= $link->asset('favicons/favicon-16x16.png') ?>">
     <link rel="manifest" href="<?= $link->asset('favicons/site.webmanifest') ?>">
     <link rel="shortcut icon" href="<?= $link->asset('favicons/favicon.ico') ?>">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="<?= $link->asset('css/styl.css') ?>">
-    <script src="<?= $link->asset('js/script.js') ?>"></script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?= $link->asset('css/style.css') ?>">
 </head>
 <body>
-<nav class="navbar navbar-expand-sm bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="<?= $link->url('home.index') ?>">
-            <img src="<?= $link->asset('images/vaiicko_logo.png') ?>" title="<?= App\Configuration::APP_NAME ?>" alt="Framework Logo">
+
+<header>
+    <div class="header-inner">
+
+        <a class="brand" href="<?= $link->url('home.index') ?>">
+            <span class="logo-box" aria-hidden="true">
+                <img src="<?= $link->asset('images/logo.png') ?>" alt="Logo">
+            </span>
+            <span class="web-name"><?= App\Configuration::APP_NAME ?></span>
         </a>
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="<?= $link->url('home.contact') ?>">Contact</a>
-            </li>
-        </ul>
-        <?php if ($user->isLoggedIn()) { ?>
-            <span class="navbar-text">Logged in user: <b><?= $user->getName() ?></b></span>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= $link->url('auth.logout') ?>">Log out</a>
-                </li>
+
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="menu-btn" aria-label="Otvoriť menu">☰</label>
+
+        <nav class="main-nav" aria-label="Hlavná navigácia">
+            <ul>
+                <li><a href="<?= $link->url('home.index') ?>">Galéria</a></li>
+                <li><a href="<?= $link->url('report.editor') ?>">Editor</a></li>
             </ul>
-        <?php } else { ?>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= App\Configuration::LOGIN_URL ?>">Log in</a>
-                </li>
-            </ul>
-        <?php } ?>
+        </nav>
+
+        <div class="auth">
+            <?php if ($user->isLoggedIn()) { ?>
+                <div class="user">
+                    <span><?= $user->getName() ?></span>
+                    <span class="avatar" aria-hidden="true"></span>
+                </div>
+                <a href="<?= $link->url('auth.logout') ?>" class="btn">Odhlásiť sa</a>
+            <?php } else { ?>
+                <a href="<?= App\Configuration::LOGIN_URL ?>" class="btn">Prihlásiť sa</a>
+                <a href="#" class="btn">Registrovať sa</a>
+            <?php } ?>
+        </div>
+
     </div>
-</nav>
-<div class="container-fluid mt-3">
-    <div class="web-content">
-        <?= $contentHTML ?>
-    </div>
-</div>
+</header>
+
+<main>
+    <?= $contentHTML ?>
+</main>
+
+<footer>
+    <p>© <?= date('Y') ?> <?= App\Configuration::APP_NAME ?> - semestrálny projekt</p>
+</footer>
+
 </body>
 </html>
