@@ -1,0 +1,228 @@
+:root {
+    --bg: #fcf0da;
+    --bar: #aeac78;
+    --accent: #f2c36a;
+    --card: #fff8ee;
+    --text: #4c4541;
+    --border: #4c4541;
+    --radius: 8px;
+    --thickness: 2px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 16px;
+    color: var(--text);
+    background: var(--bg);
+}
+
+img, svg {
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+header {
+    background: var(--bar);
+    border-bottom: var(--thickness) solid var(--border);
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 700;
+}
+
+.logo-box {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    background: var(--card);
+    border: var(--thickness) solid var(--border);
+    border-radius: var(--radius);
+}
+
+.menu-toggle {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.menu-btn {
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 0.35rem 0.65rem;
+    border: var(--thickness) solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    cursor: pointer;
+}
+
+.menu-toggle:focus-visible + .menu-btn {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+}
+
+.main-nav, .auth {
+    display: none;
+    width: 100%;
+}
+
+.menu-toggle:checked ~ .main-nav, .menu-toggle:checked ~ .auth {
+    display: flex;
+}
+
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.main-nav a {
+    display: block;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    border: var(--thickness) solid transparent;
+    border-radius: var(--radius);
+}
+
+.main-nav a:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.main-nav a.active {
+    background: var(--accent);
+    border-color: var(--border);
+}
+
+.auth {
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--card);
+    border: var(--thickness) solid var(--border);
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.55rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+    background: var(--card);
+    border: var(--thickness) solid var(--border);
+    border-radius: var(--radius);
+}
+
+.btn:hover {
+    background: var(--accent);
+}
+
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 2rem;
+}
+
+main h1 {
+    margin: 0 0 1.25rem;
+    font-size: 1.5rem;
+}
+
+.placeholder {
+    min-height: 320px;
+    display: grid;
+    place-items: center;
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+}
+
+footer {
+    background: var(--bar);
+    border-top: var(--thickness) solid var(--border);
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.75rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+@media (min-width: 800px) {
+    .header-inner {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr; /* logo | nav | prihlasenie */
+        padding: 0.75rem 2rem;
+    }
+
+    .menu-toggle, .menu-btn {
+        display: none;
+    }
+
+    .main-nav, .auth {
+        display: flex;
+        width: auto;
+    }
+
+    .main-nav ul {
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .auth {
+        flex-direction: row;
+        justify-self: end;
+    }
+
+    .placeholder {
+        min-height: 450px;
+    }
+}
