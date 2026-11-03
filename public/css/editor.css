@@ -1,7 +1,16 @@
 .editor {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
+}
+
+/* Allow grid items to shrink below their content width (prevents horizontal overflow) */
+.editor > * {
+    min-width: 0;
+}
+
+main h1 {
+    overflow-wrap: anywhere;
 }
 
 .toolbar, .properties {
@@ -71,14 +80,14 @@
     font-size: 0.7rem;
 }
 
-fieldset {
+.properties fieldset {
     min-width: 0;
     margin: 0 0 1.25rem;
     padding: 0;
     border: 0;
 }
 
-legend {
+.properties legend {
     display: block;
     width: 100%;
     margin-bottom: 0.75rem;
@@ -103,14 +112,15 @@ legend {
     margin-bottom: 0;
 }
 
-label {
+.properties label {
     display: block;
     margin-bottom: 0.25rem;
     font-size: 0.7rem;
     font-weight: 600;
 }
 
-input, select {
+.properties input,
+.properties select {
     width: 100%;
     min-width: 0;
     padding: 0.5rem;
@@ -122,7 +132,7 @@ input, select {
     border-radius: var(--radius);
 }
 
-input[type="color"] {
+.properties input[type="color"] {
     height: 38px;
     padding: 3px;
     cursor: pointer;
@@ -138,7 +148,7 @@ input[type="color"] {
     gap: 0.75rem;
 }
 
-button.btn {
+.properties button.btn {
     font: inherit;
     font-size: 0.85rem;
     font-weight: 600;
@@ -148,7 +158,7 @@ button.btn {
 
 @media (min-width: 1000px) {
     .editor {
-        grid-template-columns: auto 1fr 280px;
+        grid-template-columns: auto minmax(0, 1fr) 280px;
         gap: 1.5rem;
         align-items: start;
     }
