@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Report;
 use Framework\Core\BaseController;
 use Framework\Http\Request;
 use Framework\Http\Responses\Response;
@@ -39,6 +40,6 @@ class HomeController extends BaseController
      */
     public function index(Request $request): Response
     {
-        return $this->html();
+        return $this->html(['reports' => Report::getAll('visibility = ?', ['public'], 'id DESC')]);
     }
 }
