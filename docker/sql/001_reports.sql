@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS `reports`
     `name`       VARCHAR(100) NOT NULL,
     `width`      INT NOT NULL DEFAULT 800,
     `height`     INT NOT NULL DEFAULT 600,
-    `visibility` VARCHAR(10) NOT NULL DEFAULT 'private',
+    `visibility` VARCHAR(10) NOT NULL DEFAULT 'private'
 );
 
 INSERT INTO `reports` (`name`, `width`, `height`, `visibility`)
