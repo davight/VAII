@@ -1,11 +1,12 @@
 <?php
 
+/** @var \App\Models\Report $report */
 /** @var \Framework\Support\LinkGenerator $link */
 ?>
 
 <link rel="stylesheet" href="<?= $link->asset('css/editor.css') ?>">
 
-<h1>Edit reportu: názov</h1>
+<h1>Edit reportu: <?= htmlspecialchars($report->name) ?></h1>
 
 <div class="editor">
     <aside class="toolbar" aria-label="Panel nástrojov">
@@ -49,7 +50,7 @@
 
     <section class="canvas-area" aria-label="Plátno reportu">
         <div class="canvas">Plátno</div>
-        <p class="canvas-size">Rozmery: 1280 x 720 px</p>
+        <p class="canvas-size">Rozmery: <?= htmlspecialchars($report->width) ?>x<?= htmlspecialchars($report->height) ?> px</p>
     </section>
 
     <aside class="properties" aria-label="Vlastnosti prvku">

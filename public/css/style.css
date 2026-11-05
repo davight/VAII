@@ -156,10 +156,22 @@ header {
     background: var(--card);
     border: var(--thickness) solid var(--border);
     border-radius: var(--radius);
+    font-family: inherit;
+    line-height: inherit;
+    color: inherit;
+    cursor: pointer;
 }
 
 .btn:hover {
     background: var(--accent);
+}
+
+.btn-danger {
+    background: #f4b6b6;
+}
+
+.btn-danger:hover {
+    background: #ec9a9a;
 }
 
 main {
@@ -224,5 +236,106 @@ footer p {
 
     .placeholder {
         min-height: 450px;
+    }
+}
+
+/* Reports CRUD */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+}
+
+.data-table .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.data-table .actions form {
+    margin: 0;
+}
+
+.report-form {
+    display: grid;
+    gap: 0.5rem;
+    max-width: 420px;
+}
+
+.report-form input,
+.report-form select {
+    padding: 0.4rem;
+}
+
+/* Gallery */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-card {
+    padding: 1rem;
+    background: var(--card);
+    border: var(--thickness) solid var(--border);
+    border-radius: var(--radius);
+}
+
+.gallery-card h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+}
+
+.gallery-card p {
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+    .data-table thead {
+        display: none;
+    }
+
+    .data-table,
+    .data-table tbody,
+    .data-table tr,
+    .data-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .data-table tr {
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+        background: var(--card);
+        border: var(--thickness) solid var(--border);
+        border-radius: var(--radius);
+    }
+
+    .data-table td {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        border-bottom: none;
+    }
+
+    .data-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+    }
+
+    .data-table .actions {
+        justify-content: flex-start;
+    }
+
+    .data-table .actions::before {
+        display: none;
     }
 }

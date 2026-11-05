@@ -40,7 +40,7 @@
         <nav class="main-nav" aria-label="Hlavná navigácia">
             <ul>
                 <li><a href="<?= $link->url('home.index') ?>">Galéria</a></li>
-                <li><a href="<?= $link->url('report.editor') ?>">Editor</a></li>
+                <li><a href="<?= $link->url('report.index') ?>">Moje reporty</a></li>
             </ul>
         </nav>
 
