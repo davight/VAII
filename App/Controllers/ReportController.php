@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Report;
+use App\Models\User;
 use Framework\Core\BaseController;
 use Framework\Http\HttpException;
 use Framework\Http\Request;
@@ -34,7 +35,11 @@ class ReportController extends BaseController
      */
     public function index(Request $request): Response
     {
-        return $this->html(['reports' => Report::getAll(orderBy: 'id DESC')]);
+        $users = [];
+        foreach (User::getAll() as $u) {
+            $users[$u->id] = $u;
+        }
+        return $this->html(['reports' => Report::getAll(orderBy: 'id DESC'), 'users' => $users]);
     }
 
     /**
@@ -45,11 +50,13 @@ class ReportController extends BaseController
         $report = new Report();
         if ($request->isPost()) {
             $report->setFromRequest($request);
+            $report->userId = $this->postedUserId($request);
             $report->save();
             return $this->redirect($this->url('report.index'));
         }
         return $this->html([
             'report' => $report,
+            'users' => User::getAll(orderBy: 'username'),
             'title' => 'Nový report',
             'action' => $this->url('report.create'),
         ], 'form');
@@ -70,11 +77,13 @@ class ReportController extends BaseController
         if ($request->isPost()) {
             $report->setFromRequest($request);
             $report->id = (int)$id;
+            $report->userId = $this->postedUserId($request);
             $report->save();
             return $this->redirect($this->url('report.index'));
         }
         return $this->html([
             'report' => $report,
+            'users' => User::getAll(orderBy: 'username'),
             'title' => 'Upraviť report',
             'action' => $this->url('report.edit', ['id' => $id]),
         ], 'form');
@@ -110,5 +119,14 @@ class ReportController extends BaseController
             throw new HttpException(404, 'Report neexistuje.');
         }
         return $this->html(['report' => $report]);
+    }
+
+    /**
+     * Owner (1:N User -> Report) from the form; empty selection means no owner.
+     */
+    private function postedUserId(Request $request): ?int
+    {
+        $value = $request->post('owner_id');
+        return ($value === null || $value === '') ? null : (int)$value;
     }
 }
