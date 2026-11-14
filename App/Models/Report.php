@@ -10,4 +10,5 @@ class Report extends Model
     public ?int $width = 800;
     public ?int $height = 600;
     public ?string $visibility = 'private';
+    public ?int $userId = null;
 }
