@@ -41,6 +41,9 @@
             <ul>
                 <li><a href="<?= $link->url('home.index') ?>">Galéria</a></li>
                 <li><a href="<?= $link->url('report.index') ?>">Moje reporty</a></li>
+                <li><a href="<?= $link->url('user.index') ?>">Používatelia</a></li>
+                <li><a href="<?= $link->url('location.index') ?>">Lokality</a></li>
+                <li><a href="<?= $link->url('sensor.index') ?>">Senzory</a></li>
             </ul>
         </nav>
 

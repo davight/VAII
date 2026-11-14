@@ -1,6 +1,7 @@
 <?php
 
 /** @var \App\Models\Report[] $reports */
+/** @var \App\Models\User[] $users */
 /** @var \Framework\Support\LinkGenerator $link */
 ?>
 
@@ -18,6 +19,7 @@
             <th>Názov</th>
             <th>Rozmery</th>
             <th>Viditeľnosť</th>
+            <th>Vlastník</th>
             <th>Akcie</th>
         </tr>
         </thead>
@@ -28,6 +30,7 @@
                 <td data-label="Názov"><?= htmlspecialchars($report->name) ?></td>
                 <td data-label="Rozmery"><?= (int)$report->width ?> × <?= (int)$report->height ?></td>
                 <td data-label="Viditeľnosť"><?= $report->visibility === 'public' ? 'Verejný' : 'Súkromný' ?></td>
+                <td data-label="Vlastník"><?= $report->userId !== null && isset($users[$report->userId]) ? htmlspecialchars($users[$report->userId]->username) : '-' ?></td>
                 <td class="actions" data-label="Akcie">
                     <a class="btn" href="<?= $link->url('report.editor', ['id' => $report->id]) ?>">Editor</a>
                     <a class="btn" href="<?= $link->url('report.edit', ['id' => $report->id]) ?>">Upraviť</a>

@@ -1,6 +1,7 @@
 <?php
 
 /** @var \App\Models\Report $report */
+/** @var \App\Models\User[] $users */
 /** @var string $title */
 /** @var string $action */
 /** @var \Framework\Support\LinkGenerator $link */
@@ -23,6 +24,16 @@
     <select id="visibility" name="visibility">
         <option value="private" <?= $report->visibility !== 'public' ? 'selected' : '' ?>>Súkromný</option>
         <option value="public" <?= $report->visibility === 'public' ? 'selected' : '' ?>>Verejný</option>
+    </select>
+
+    <label for="owner_id">Vlastník</label>
+    <select id="owner_id" name="owner_id">
+        <option value="">- bez vlastníka -</option>
+        <?php foreach ($users as $u) { ?>
+            <option value="<?= (int)$u->id ?>" <?= $report->userId === $u->id ? 'selected' : '' ?>>
+                <?= htmlspecialchars($u->username) ?>
+            </option>
+        <?php } ?>
     </select>
 
     <div>
