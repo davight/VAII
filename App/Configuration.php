@@ -54,7 +54,7 @@ class Configuration
      * Class name for the database naming conventions implementation. This should adhere to the IDbConvention interface.
      * The default implementation is DefaultConventions.
      */
-    public const DB_CONVENTIONS_CLASS = DefaultConventions::class;
+    public const DB_CONVENTIONS_CLASS = \Framework\DB\SnakeConventions::class;
 
     /**
      * Flag to enable or disable detailed exception stack traces. This feature is intended for development purposes
