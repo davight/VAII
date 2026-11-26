@@ -29,13 +29,38 @@
 <?php if (count($data) === 0) { ?>
     <p>Zatiaľ žiadne hodnoty.</p>
 <?php } else { ?>
-    <table class="data-table">
+    <form id="measurementFilter" class="filter-form">
+        <label>Od dátumu <input type="date" name="from"></label>
+        <label>Do dátumu <input type="date" name="to"></label>
+        <label>Minimálna hodnota <input type="number" name="min" step="any"></label>
+        <label>Maximálna hodnota <input type="number" name="max" step="any"></label>
+        <label>Zoradiť
+            <select name="sort">
+                <option value="newest">Od najnovších</option>
+                <option value="oldest">Od najstarších</option>
+                <option value="highest">Od najvyššej hodnoty</option>
+                <option value="lowest">Od najnižšej hodnoty</option>
+            </select>
+        </label>
+        <button type="button" id="resetFilter" class="btn">Zrušiť filter</button>
+    </form>
+
+    <dl class="stats" aria-live="polite">
+        <div><dt>Zobrazené</dt><dd id="statCount"></dd></div>
+        <div><dt>Minimum</dt><dd id="statMin"></dd></div>
+        <div><dt>Maximum</dt><dd id="statMax"></dd></div>
+        <div><dt>Priemer</dt><dd id="statAverage"></dd></div>
+    </dl>
+
+    <p id="noMatches" hidden>Filtru nevyhovuje žiadna hodnota.</p>
+
+    <table class="data-table" id="measurementTable" data-unit="<?= htmlspecialchars($sensor->unit) ?>">
         <thead>
         <tr><th>Čas</th><th>Hodnota</th><th>Akcie</th></tr>
         </thead>
         <tbody>
         <?php foreach ($data as $d) { ?>
-            <tr>
+            <tr data-time="<?= htmlspecialchars($d->measuredAt) ?>" data-value="<?= (float)$d->value ?>">
                 <td data-label="Čas"><?= htmlspecialchars($d->measuredAt) ?></td>
                 <td data-label="Hodnota"><?= (float)$d->value ?> <?= htmlspecialchars($sensor->unit) ?></td>
                 <td class="actions" data-label="Akcie">
@@ -49,6 +74,8 @@
         <?php } ?>
         </tbody>
     </table>
+
+    <script src="<?= $link->asset('js/sensorDetail.js') ?>" defer></script>
 <?php } ?>
 
 <p>
