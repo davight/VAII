@@ -274,6 +274,42 @@ footer p {
     padding: 0.4rem;
 }
 
+/* Measurement filter and statistics */
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: end;
+    margin: 1.5rem 0 1rem;
+}
+
+.filter-form label {
+    display: grid;
+    gap: 0.25rem;
+    font-size: 0.85rem;
+}
+
+.filter-form input,
+.filter-form select {
+    padding: 0.4rem;
+}
+
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 0 0 1rem;
+}
+
+.stats dt {
+    font-size: 0.75rem;
+}
+
+.stats dd {
+    margin: 0;
+    font-weight: 600;
+}
+
 /* Gallery */
 .gallery {
     display: grid;
@@ -317,6 +353,11 @@ footer p {
         background: var(--card);
         border: var(--thickness) solid var(--border);
         border-radius: var(--radius);
+    }
+
+    /* the display: block above would otherwise show filtered out rows */
+    .data-table tr[hidden] {
+        display: none;
     }
 
     .data-table td {
